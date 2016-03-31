@@ -1,7 +1,7 @@
-# Android SMS Ping
+# Android Silent SMS Ping
 
   - Does not require rooted device
-  - SMS will not be delivered as standard SMS
+  - SMS will not be delivered as standard SMS, target user will receive no visual notification about SMS being received
 
 ## Description
 
