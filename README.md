@@ -18,6 +18,6 @@
 ## Usage
 
   - Install from published APK
-    - link: https://github.com/itds-consulting/android-ping-sms/releases/download/untagged-620fce2951120adbd72b/ping-sms.apk
+    - link: https://github.com/itds-consulting/android-ping-sms/releases/download/v1.0/ping-sms.apk
   - Compile it yourself and install on Android connected device
     - ./gradle clean installDebug
