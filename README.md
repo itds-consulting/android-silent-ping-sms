@@ -1,5 +1,7 @@
 # Android Silent SMS Ping
 
+[<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="60">](https://f-droid.org/app/com.itds.sms.ping) [<img src="getapkfromgithub.png" alt="Download APK from GitHub" height="60">](https://github.com/itds-consulting/android-silent-ping-sms/releases)
+
   - Does not require rooted device
   - SMS will not be delivered as standard SMS, target user will receive no visual notification about SMS being received
 
@@ -15,9 +17,12 @@
   - 3GPP 23.040 (originally GSM 03.40) https://en.wikipedia.org/wiki/GSM_03.40
   - 3GPP 23.038 (originally GSM 03.38) https://en.wikipedia.org/wiki/GSM_03.38
 
-## Usage
+## Build
 
-  - Install from published APK
-    - link: https://github.com/itds-consulting/android-ping-sms/releases/download/v1.1/ping-sms.apk
   - Compile it yourself and install on Android connected device
     - ./gradle clean installDebug
+    
+## License
+
+   The project is licensed under the [GNU General Public License version 3 (or newer)](https://github.com/itds-consulting/android-silent-ping-sms/blob/master/LICENSE)
+
