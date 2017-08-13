@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SMS Ping</string>
     <string name="send">SEND</string>
-    <string name="phonenumber">+420123456789</string>
+    <string name="phonenumber">+420</string>
     <string name="delivered">DELIVERED: PHONE ONLINE</string>
     <string name="offline">DELIVERY FAILED: PHONE OFFLINE</string>
     <string name="sent">THE REQUEST IS SENT ...</string>

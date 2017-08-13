@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SMS Ping</string>
     <string name="send">ОТПРАВИТЬ</string>
-    <string name="phonenumber">+79250776870</string>
+    <string name="phonenumber">+7</string>
     <string name="delivered">АБОНЕНТ В СЕТИ</string>
     <string name="offline">АБОНЕНТ НЕДОСТУПЕН</string>
     <string name="sent">ЗАПРОС ОТПРАВЛЕН ...</string>
