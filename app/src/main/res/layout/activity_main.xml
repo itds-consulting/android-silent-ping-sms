@@ -11,13 +11,13 @@
         android:ems="10"
         android:gravity="center"
         android:inputType="phone"
-        android:text="+420123456789" />
+        android:text="@string/phonenumber" />
 
     <Button
         android:id="@+id/sendButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SEND" />
+        android:text="@string/send" />
 
     <TextView
         android:id="@+id/sendStatus"

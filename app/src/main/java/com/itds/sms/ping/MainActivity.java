@@ -106,7 +106,7 @@ public final class MainActivity extends AppCompatActivity {
             }
 
             if (SENT.equalsIgnoreCase(intent.getAction())) {
-                statusText.setText("SEND: " + (getResultCode() == RESULT_OK ? "OK" : "ERROR"));
+                statusText.setText((getResultCode() == RESULT_OK ? R.string.sent : R.string.notsent));
                 resultText.setText(null);
             } else if (DELIVER.equalsIgnoreCase(intent.getAction())) {
                 boolean delivered = false;
@@ -117,7 +117,7 @@ public final class MainActivity extends AppCompatActivity {
                         delivered = "00".equalsIgnoreCase(resultPdu.substring(resultPdu.length() - 2));
                     }
                 }
-                resultText.setText(delivered ? "DELIVERED: PHONE ONLINE" : "DELIVERY FAILED: PHONE OFFLINE");
+                resultText.setText(delivered ? R.string.delivered : R.string.offline);
             }
 
         }
