@@ -8,8 +8,8 @@ android {
         applicationId "com.itds.sms.ping"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "2"
     }
     buildTypes {
         release {
