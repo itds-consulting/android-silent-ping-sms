@@ -6,6 +6,7 @@
     <string name="offline">DELIVERY FAILED: PHONE OFFLINE</string>
     <string name="sent">THE REQUEST IS SENT …</string>
     <string name="notsent">FAILED TO SEND REQUEST</string>
-    <string name="pick_contact">PICK CONTACT</string>
+    <string name="pick_contact">Pick Phone from Contacts</string>
     <string name="pick_contact_failed">Failed to select contact</string>
+    <string name="title_history">History:</string>
 </resources>
