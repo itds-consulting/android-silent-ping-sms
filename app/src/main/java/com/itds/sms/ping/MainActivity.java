@@ -7,15 +7,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static java.security.AccessController.getContext;
 
 public final class MainActivity extends AppCompatActivity {
 
@@ -29,6 +39,9 @@ public final class MainActivity extends AppCompatActivity {
     final IntentFilter sentFilter = new IntentFilter(SENT);
     final IntentFilter deliveryFilter = new IntentFilter(DELIVER);
     final IntentFilter wapDeliveryFilter = new IntentFilter("android.provider.Telephony.WAP_PUSH_DELIVER");
+
+    MenuItem pickContact;
+    public final static int MENU_ITEM_PICK_CONTACT = 999;
 
     PendingIntent sentPI;
     PendingIntent deliveryPI;
@@ -92,6 +105,56 @@ public final class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         unregisterReceiver(br);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        pickContact = menu.findItem(MENU_ITEM_PICK_CONTACT);
+        if (pickContact == null) {
+            pickContact = menu.add(Menu.NONE, MENU_ITEM_PICK_CONTACT, Menu.NONE, R.string.pick_contact)
+                    .setIcon(R.mipmap.ic_menu_invite);
+            MenuItemCompat.setShowAsAction(pickContact, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == MENU_ITEM_PICK_CONTACT) {
+            pickContact();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void pickContact() {
+        Intent pickIntent = new Intent(Intent.ACTION_PICK);
+        pickIntent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+        ActivityCompat.startActivityForResult(this, pickIntent, MENU_ITEM_PICK_CONTACT, null);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            if (requestCode == MENU_ITEM_PICK_CONTACT && resultCode == RESULT_OK) {
+                Uri contactUri = data.getData();
+                String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER};
+                Cursor cursor = getContentResolver().query(contactUri, projection,
+                        null, null, null);
+
+                if (cursor != null && cursor.moveToFirst()) {
+                    int numberIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                    phoneNumber.setText(cursor.getString(numberIndex));
+                }
+
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, R.string.pick_contact_failed, Toast.LENGTH_SHORT).show();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     BroadcastReceiver br = new BroadcastReceiver() {
