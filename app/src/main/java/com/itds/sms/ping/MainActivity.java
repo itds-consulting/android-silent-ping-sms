@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static java.security.AccessController.getContext;
 
@@ -128,13 +129,24 @@ public final class MainActivity extends AppCompatActivity {
     }
 
     boolean checkPermissions() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.SEND_SMS},
-                    1);
+        List<String> missingPermissions = new ArrayList<>();
+
+        int sendSmsPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+        int readPhonePermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+
+        if (sendSmsPermission != PackageManager.PERMISSION_GRANTED) {
+            missingPermissions.add(Manifest.permission.SEND_SMS);
+        }
+
+        if (readPhonePermission != PackageManager.PERMISSION_GRANTED) {
+            missingPermissions.add(Manifest.permission.READ_PHONE_STATE);
+        }
+
+        if (!missingPermissions.isEmpty()) {
+            ActivityCompat.requestPermissions(this, missingPermissions.toArray(new String[0]), 1);
             return false;
         }
+
         return true;
     }
 
