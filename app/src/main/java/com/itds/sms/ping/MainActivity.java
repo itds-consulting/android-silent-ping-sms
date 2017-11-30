@@ -14,11 +14,8 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
-import android.util.ArraySet;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,8 +30,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 public final class MainActivity extends AppCompatActivity {
 
@@ -73,10 +68,10 @@ public final class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        phoneNumber = (EditText) findViewById(R.id.phoneNumber);
-        statusText = (TextView) findViewById(R.id.sendStatus);
-        resultText = (TextView) findViewById(R.id.resultStatus);
-        historyList = (ListView) findViewById(R.id.historyList);
+        phoneNumber = findViewById(R.id.phoneNumber);
+        statusText = findViewById(R.id.sendStatus);
+        resultText = findViewById(R.id.resultStatus);
+        historyList = findViewById(R.id.historyList);
 
         preferences = getPreferences(Context.MODE_PRIVATE);
         phoneNumber.setText(preferences.getString(PREF_LAST_NUMBER, getString(R.string.phonenumber)));
@@ -177,14 +172,12 @@ public final class MainActivity extends AppCompatActivity {
         pickContact = menu.findItem(MENU_ITEM_PICK_CONTACT);
         if (pickContact == null) {
             pickContact = menu.add(Menu.NONE, MENU_ITEM_PICK_CONTACT, Menu.NONE, R.string.pick_contact)
-                    .setIcon(R.mipmap.ic_menu_invite);
-            MenuItemCompat.setShowAsAction(pickContact, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+                    .setIcon(R.mipmap.ic_menu_invite).setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         }
         clearHistory = menu.findItem(MENU_ITEM_CLEAR_HISTORY);
         if (clearHistory == null) {
             clearHistory = menu.add(Menu.NONE, MENU_ITEM_CLEAR_HISTORY, Menu.NONE, "Clear history")
-                    .setIcon(android.R.drawable.ic_menu_close_clear_cancel);
-            MenuItemCompat.setShowAsAction(clearHistory, MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
+                    .setIcon(android.R.drawable.ic_menu_close_clear_cancel).setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         }
         return super.onCreateOptionsMenu(menu);
     }
