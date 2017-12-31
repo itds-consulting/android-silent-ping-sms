@@ -9,4 +9,6 @@
     <string name="pick_contact">Pick Phone from Contacts</string>
     <string name="pick_contact_failed">Failed to select contact</string>
     <string name="title_history">History:</string>
+    <string name="storage_description">Long-touch row to copy contents into clipboard</string>
+    <string name="result_pdu_details">Result PDU details</string>
 </resources>

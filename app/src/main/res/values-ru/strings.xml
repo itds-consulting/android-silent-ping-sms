@@ -9,4 +9,6 @@
     <string name="pick_contact">Выбрать контакт</string>
     <string name="pick_contact_failed">Не удалось выбрать контакт</string>
     <string name="title_history">история:</string>
+    <string name="storage_description">Длинный контакт для копирования</string>
+    <string name="result_pdu_details">Result PDU details</string>
 </resources>
