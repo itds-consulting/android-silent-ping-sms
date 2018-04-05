@@ -18,7 +18,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -94,10 +96,11 @@ public final class MainActivity extends AppCompatActivity {
         phoneNumber.setText(preferences.getString(PREF_LAST_NUMBER, getString(R.string.phonenumber)));
 
         findViewById(R.id.sendButton).setOnClickListener(v -> {
-            if (MainActivity.this.checkPermissions()) {
+            final String phoneNum = phoneNumber.getText().toString();
+            if (MainActivity.this.checkPermissions() && !TextUtils.isEmpty(phoneNum) && Patterns.PHONE.matcher(phoneNum).matches()) {
                 resultText.setText(null);
-                updateHistory(phoneNumber.getText().toString());
-                SmsManager.getDefault().sendDataMessage(phoneNumber.getText().toString(), null, (short) 9200, payload, sentPI, deliveryPI);
+                updateHistory(phoneNum);
+                SmsManager.getDefault().sendDataMessage(phoneNum, null, (short) 9200, payload, sentPI, deliveryPI);
             }
         });
 
