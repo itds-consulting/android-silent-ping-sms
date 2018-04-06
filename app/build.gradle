@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'project-report'
 
 android {
     compileSdkVersion 27
@@ -26,8 +27,14 @@ android {
 }
 
 dependencies {
+    def withoutMTP = {
+        exclude group: 'org.mobicents.protocols.ss7.mtp', module: 'mtp-api'
+        exclude group: 'org.mobicents.protocols.ss7.mtp', module: 'mtp'
+        exclude group: 'org.mobicents.protocols.ss7.sccp', module: 'sccp-api'
+        exclude group: 'org.mobicents.protocols.ss7.sccp', module: 'sccp'
+    }
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'org.mobicents.protocols.ss7.map:map-impl:8.0.112'
+    implementation 'org.mobicents.protocols.ss7.map:map-impl:8.0.112', withoutMTP
     testImplementation 'junit:junit:4.12'
 }
