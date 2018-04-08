@@ -14,8 +14,8 @@ android {
         applicationId "com.itds.sms.ping"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 5
-        versionName "4-alpha-1"
+        versionCode 6
+        versionName "4"
     }
 
     buildTypes {
