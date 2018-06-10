@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SMS Ping</string>
+    <string name="send">SENDEN</string>
+    <string name="phonenumber">+420</string>
+    <string name="delivered">ZUGESTELLT: TELEFON ONLINE</string>
+    <string name="offline">NICHT ZUGESTELLT: TELEFON OFFLINE</string>
+    <string name="sent">DIE ANFRAGE WURDE GESENDET...</string>
+    <string name="notsent">FEHLER BEIM SENDEN DER ANFRAGE</string>
+    <string name="pick_contact">Wähle von Kontakten</string>
+    <string name="pick_contact_failed">Fehler beim aussuchen des Kontaktes</string>
+    <string name="title_history">Verlauf:</string>
+    <string name="storage_description">Klicke lange, um Inhalt zu kopieren</string>
+    <string name="result_pdu_details">PDU Ergebisdetails</string>
+</resources>
